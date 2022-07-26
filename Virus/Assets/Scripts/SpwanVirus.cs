@@ -24,7 +24,7 @@ public class SpwanVirus : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             float ran = Random.Range(spwanArea.position.y - 2f, spwanArea.position.y + 2f);
-            Move obj = Instantiate(virusPrefab, new Vector2(spwanArea.position.x, ran), Quaternion.identity).GetComponent<Move>();
+            Enemy obj = Instantiate(virusPrefab, new Vector2(spwanArea.position.x, ran), Quaternion.identity).GetComponent<Enemy>();
             yield return new WaitForSeconds(waitMadeTime);
         }
     }
