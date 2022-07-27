@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     }
     public void Init()
     {
-        virusFrontSpeed = -0.4f;
+        virusFrontSpeed = 0;
         virusPos = transform.position;
     }
 

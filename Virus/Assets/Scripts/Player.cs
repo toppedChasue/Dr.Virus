@@ -8,41 +8,37 @@ public class Player : MonoBehaviour
     public LayerMask layer;
 
     public GameObject bullet;
+    public Transform bulletPos;
 
-    private bool isAttack;
+    //일정 범위 내에 들어온 적을 감지함
 
-    public Animator anim;
-
-
-    private void Awake()
+    private void Start()
     {
-        anim = GetComponent<Animator>();
+        SearchVirus();
     }
-    // Update is called once per frame
-    void Update()
+    private void SearchVirus()
     {
-        Attack();
-    }
+        Collider2D[] obj = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 8, transform.position.y), size, 0, layer);
 
+        List<Collider2D> collider2Ds = new List<Collider2D>();
+        Debug.Log(collider2Ds);
 
-    private void Attack()
-    {
-        //감지범위에 들어온 오브젝트 반환
-        Collider2D[] others = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 8, transform.position.y), size, 0, layer);
-
-        List<Collider2D> col2D = new List<Collider2D>();
-
-        for (int i = 0; i < others.Length; i++)
+        for (int i = 0; i < obj.Length; i++)
         {
-            col2D.Add(others[i]);
+            collider2Ds.Add(obj[i]);
+            Debug.Log(collider2Ds[i] + "/" + i);
         }
-
     }
+
+    //감지한 적을 리스트에 담아서
+
+    //타겟으로 삼고
+
+    //총알 생성 후 타켓의 정보를 알려줌
 
     void OnDrawGizmos()
     {//감지 범위 그려줌
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(new Vector2(transform.position.x + 8, transform.position.y), size);
     }
-
 }
