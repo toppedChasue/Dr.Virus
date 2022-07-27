@@ -9,10 +9,16 @@ public class SpwanVirus : MonoBehaviour
 
     private float waitMadeTime; //하나 생성되고 다시 생성될때까지 쿨타임
 
+    List<Enemy> enemyList;
+
+    private void Awake()
+    {
+        enemyList = new List<Enemy>();
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             waitMadeTime = 2f;
             StartCoroutine(MadeVirus(waitMadeTime));
@@ -25,6 +31,8 @@ public class SpwanVirus : MonoBehaviour
         {
             float ran = Random.Range(spwanArea.position.y - 2f, spwanArea.position.y + 2f);
             Enemy obj = Instantiate(virusPrefab, new Vector2(spwanArea.position.x, ran), Quaternion.identity).GetComponent<Enemy>();
+
+            enemyList.Add(obj); 
             yield return new WaitForSeconds(waitMadeTime);
         }
     }
