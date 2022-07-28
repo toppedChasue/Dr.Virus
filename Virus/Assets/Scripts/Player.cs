@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     public float damage;
     public float attackRange;
 
+    public int power;
+
     private float currentTime;
     public float attactTime;
 
@@ -63,11 +65,29 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
-        GameObject obj = objectManager.MakeObj("Basic");
-        obj.gameObject.GetComponent<Enemy>();
-        obj.transform.position = bulletPos.position;
-        //obj에게 타겟 정보를 넘겨줘야함
+        switch(power)
+        {
+            case 0:
+                SingleBullet();
+                break;
+            case 1:
+
+                break;
+
+        }
+
+        return;
     }
+
+    private void SingleBullet()
+    {
+        GameObject obj = objectManager.MakeObj("Basic");
+        Bullet bulletObj = obj.GetComponent<Bullet>();
+        bulletObj.target = target;
+        bulletObj.bulletPos = bulletPos;
+        currentTime = 0;
+    }
+
 
 
     void OnDrawGizmos()

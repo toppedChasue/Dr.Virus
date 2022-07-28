@@ -507,6 +507,7 @@ MonoBehaviour:
   bulletPos: {fileID: 965049375}
   damage: 1
   attackRange: 50
+  power: 0
   attactTime: 1
   objectManager: {fileID: 2060148417}
 --- !u!95 &908165569
@@ -686,6 +687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerBulletPrefab: {fileID: 3272105623706421490, guid: 550a0e238369fe94da96f44fb286d8f1, type: 3}
+  enemyAPrefab: {fileID: 0}
 --- !u!4 &2060148418
 Transform:
   m_ObjectHideFlags: 0

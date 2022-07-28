@@ -5,13 +5,17 @@ using UnityEngine;
 public class ObjectManager : MonoBehaviour
 {
     public GameObject playerBulletPrefab;
+    public GameObject enemyAPrefab;
 
     GameObject[] playerBullet;
+    GameObject[] enemyA;
 
     GameObject[] targetPool;
     void Awake()
     {
-        playerBullet = new GameObject[100];
+        playerBullet = new GameObject[20];
+
+        enemyA = new GameObject[10];
 
         Generate();
     }
@@ -21,6 +25,11 @@ public class ObjectManager : MonoBehaviour
         {
             playerBullet[index] = Instantiate(playerBulletPrefab);
             playerBullet[index].SetActive(false);
+        } 
+        for (int index = 0; index < enemyA.Length; index++)
+        {
+            enemyA[index] = Instantiate(enemyAPrefab);
+            enemyA[index].SetActive(false);
         }
     }
 
@@ -30,6 +39,7 @@ public class ObjectManager : MonoBehaviour
         {
             case "Basic":
                 targetPool = playerBullet;
+
                 break;
         }
 
