@@ -9,12 +9,10 @@ public class SpwanVirus : MonoBehaviour
 
     private float waitMadeTime; //하나 생성되고 다시 생성될때까지 쿨타임
 
-    List<Enemy> enemyList;
+    private float currentTime;
 
-    private void Awake()
-    {
-        enemyList = new List<Enemy>();
-    }
+    List<Enemy> enemies = new List<Enemy>();
+
 
     private void Update()
     {
@@ -32,7 +30,7 @@ public class SpwanVirus : MonoBehaviour
             float ran = Random.Range(spwanArea.position.y - 2f, spwanArea.position.y + 2f);
             Enemy obj = Instantiate(virusPrefab, new Vector2(spwanArea.position.x, ran), Quaternion.identity).GetComponent<Enemy>();
 
-            enemyList.Add(obj); 
+            enemies.Add(obj);
             yield return new WaitForSeconds(waitMadeTime);
         }
     }

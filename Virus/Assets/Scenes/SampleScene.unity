@@ -502,8 +502,13 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 64
+  target: {fileID: 0}
   bullet: {fileID: 3272105623706421490, guid: 550a0e238369fe94da96f44fb286d8f1, type: 3}
   bulletPos: {fileID: 965049375}
+  damage: 1
+  attackRange: 50
+  attactTime: 1
+  objectManager: {fileID: 2060148417}
 --- !u!95 &908165569
 Animator:
   serializedVersion: 3
@@ -650,4 +655,48 @@ Transform:
   - {fileID: 805016740}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2060148416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2060148418}
+  - component: {fileID: 2060148417}
+  m_Layer: 0
+  m_Name: ObjManger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2060148417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060148416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e487ad98dceeed64fa3a348176aee673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerBulletPrefab: {fileID: 3272105623706421490, guid: 550a0e238369fe94da96f44fb286d8f1, type: 3}
+--- !u!4 &2060148418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060148416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
