@@ -99,7 +99,9 @@ MonoBehaviour:
   enemystat:
     hp: 0
     dp: 0
+  enemyName: 
   virusFrontSpeed: 0
+  player: {fileID: 0}
 --- !u!58 &3514743577603783332
 CircleCollider2D:
   m_ObjectHideFlags: 0

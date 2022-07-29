@@ -16,6 +16,8 @@ public class Player : MonoBehaviour
 
     public int power;
 
+    public int gold;
+
     private float currentTime;
     public float attactTime;
 
@@ -35,8 +37,6 @@ public class Player : MonoBehaviour
         foreach (Collider2D enemycol in obj)
         {
             Enemy enemy1 = enemycol.GetComponent<Enemy>();
-
-            
             enemies.Add(enemy1);
         }
 
@@ -71,11 +71,15 @@ public class Player : MonoBehaviour
                 SingleBullet();
                 break;
             case 1:
-
+                SingleBullet();
+                Invoke("SingleBullet", 0.1f);
                 break;
-
+            case 2:
+                SingleBullet();
+                Invoke("SingleBullet", 0.1f);
+                Invoke("SingleBullet", 0.2f);
+                break;
         }
-
         return;
     }
 
@@ -87,8 +91,6 @@ public class Player : MonoBehaviour
         bulletObj.bulletPos = bulletPos;
         currentTime = 0;
     }
-
-
 
     void OnDrawGizmos()
     {//감지 범위 그려줌

@@ -9,21 +9,22 @@ struct EnemyStats
     public float dp;
 }
 
-public enum Type { A, B, C }
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
     EnemyStats enemystat;
 
-    public Type type;
+    public string enemyName;
     public float virusFrontSpeed;
 
     private Vector3 virusPos; //Virus가 생성되었을 때 위치를 기억하는 변수
+    public Player player;
 
     private void Awake()
     {
         Init();
+        player = FindObjectOfType<Player>();
     }
 
     private void Start()
@@ -64,7 +65,8 @@ public class Enemy : MonoBehaviour
         enemystat.hp -= damage;
         if(enemystat.hp <= 0)
         {
-            gameObject.SetActive(false);
+            player.gold++;
+            Destroy(gameObject);
         }
     }
 
@@ -77,8 +79,6 @@ public class Enemy : MonoBehaviour
 
             collision.gameObject.SetActive(false);
             bullet.transform.position = bullet.originPos.position;
-
-            
         }
     }
 }
