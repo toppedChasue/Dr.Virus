@@ -9,17 +9,19 @@ public class SpwanVirus : MonoBehaviour
 
     private float waitMadeTime; //하나 생성되고 다시 생성될때까지 쿨타임
 
-    private float currentTime;
+    public float currentTime =2;
 
-    List<Enemy> enemies = new List<Enemy>();
+    public List<Enemy> enemies = new List<Enemy>();
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        currentTime -= Time.deltaTime;
+        if (currentTime <= 0)
         {
             waitMadeTime = 2f;
             StartCoroutine(MadeVirus(waitMadeTime));
+            currentTime = 10;
         }
     }
 

@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
     public Player player;
     private float powerUpGold;
 
-    public Vector3 cameraOriginPos;
-    public Transform cameraTarget;
     private float speed;
 
     public void PowerUpBtn()

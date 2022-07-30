@@ -50,6 +50,4 @@ public class Bullet : MonoBehaviour
     {
         transform.position += dir.normalized * speed * Time.deltaTime;
     }
-
-
 }

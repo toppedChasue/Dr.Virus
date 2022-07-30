@@ -20,11 +20,13 @@ public class Enemy : MonoBehaviour
 
     private Vector3 virusPos; //Virus가 생성되었을 때 위치를 기억하는 변수
     public Player player;
+    public SpwanVirus spwanVirus;
 
     private void Awake()
     {
         Init();
         player = FindObjectOfType<Player>();
+        spwanVirus = FindObjectOfType<SpwanVirus>();
     }
 
     private void Start()
@@ -67,6 +69,7 @@ public class Enemy : MonoBehaviour
         {
             player.gold++;
             Destroy(gameObject);
+            Debug.Log(spwanVirus.enemies[0]);
         }
     }
 
