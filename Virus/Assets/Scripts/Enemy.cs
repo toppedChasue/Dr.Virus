@@ -69,7 +69,6 @@ public class Enemy : MonoBehaviour
         {
             player.gold++;
             Destroy(gameObject);
-            Debug.Log(spwanVirus.enemies[0]);
         }
     }
 
