@@ -43,16 +43,16 @@ public class CameraMove : MonoBehaviour
     {
         isMoveToMine = true;
         goToMineBtn.SetActive(false);
-        goToMainBtn.SetActive(true);
         mainUIGroup.SetActive(false);
+        goToMainBtn.SetActive(true);
         mineUIGroup.SetActive(true);
     }
     public void GotoMainBtn()
     {
         isMoveToMain = true;
         goToMineBtn.SetActive(true);
-        goToMainBtn.SetActive(false);
         mainUIGroup.SetActive(true);
+        goToMainBtn.SetActive(false);
         mineUIGroup.SetActive(false);
     }
 }
