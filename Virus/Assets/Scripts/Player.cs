@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
 
     public GameObject bullet;
     public Transform bulletPos;
-    public float damage;
     public float attackRange;
 
     public int power;
@@ -19,7 +18,7 @@ public class Player : MonoBehaviour
     public int gold;
 
     private float currentTime;
-    public float attactTime;
+    public float attacktTime;
 
     List<Enemy> enemies = new List<Enemy>();
 
@@ -56,7 +55,7 @@ public class Player : MonoBehaviour
                     target = enemies[i].transform;
                 }//가장 가까운 거리에 있는 적을 타겟으로 넣어줌
             }
-            if (target != null && currentTime > attactTime)
+            if (target != null && currentTime > attacktTime)
             {
                 Attack();
             }
@@ -65,7 +64,7 @@ public class Player : MonoBehaviour
     }
     private void Attack()
     {
-        switch(power)
+        switch (power)
         {
             case 0:
                 SingleBullet();
@@ -85,7 +84,7 @@ public class Player : MonoBehaviour
 
     private void SingleBullet()
     {
-        GameObject obj = objectManager.MakeObj("Basic");
+        var obj = objectManager.MakeObj("Basic");
         Bullet bulletObj = obj.GetComponent<Bullet>();
         bulletObj.target = target;
         bulletObj.bulletPos = bulletPos;

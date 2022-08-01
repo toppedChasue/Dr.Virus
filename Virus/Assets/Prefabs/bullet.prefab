@@ -97,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 661164e34008c774b94feed21ee31606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  b_hp: 1
   bulletname: Basic
   damage: 5
   target: {fileID: 0}
-  speed: 10
+  speed: 15
   bulletPos: {fileID: 0}
   originPos: {fileID: 0}
   rigid: {fileID: 0}

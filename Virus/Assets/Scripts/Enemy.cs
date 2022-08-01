@@ -7,11 +7,17 @@ struct EnemyStats
 {
     public float hp;
     public float dp;
+    public int gold;
 }
-
 
 public class Enemy : MonoBehaviour
 {
+    //구현 할것-
+    //변종바이러스(보스)
+    //바이러스 종류 다양화(프리펩 추가)
+    //바이러스 종류 마다 스프라이트를 여러개 넣어서 색깔놀이로 돌려막기
+    //바이러스 스탯을 스테이지 마다 늘리기 
+    
     [SerializeField]
     EnemyStats enemystat;
 
@@ -67,7 +73,8 @@ public class Enemy : MonoBehaviour
         enemystat.hp -= damage;
         if(enemystat.hp <= 0)
         {
-            player.gold++;
+            player.gold += enemystat.gold;
+            spwanVirus.enemies.Remove(this);
             Destroy(gameObject);
         }
     }
@@ -77,10 +84,18 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "PlayerBullet")
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            TakeDamage(bullet.damage);
 
-            collision.gameObject.SetActive(false);
-            bullet.transform.position = bullet.originPos.position;
+            if (bullet.b_hp >= 1)
+            {
+                TakeDamage(bullet.damage);
+                bullet.b_hp--;
+                if (bullet.b_hp == 0)
+                {
+                    collision.gameObject.SetActive(false);
+                    bullet.b_hp = 1;
+                    bullet.transform.position = bullet.originPos.position;
+                }
+            }
         }
     }
 }

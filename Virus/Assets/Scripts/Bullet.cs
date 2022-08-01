@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int b_hp =1;
+
     public string bulletname;
     public float damage;
     public Transform target;
