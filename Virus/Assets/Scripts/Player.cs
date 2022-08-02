@@ -15,8 +15,6 @@ public class Player : MonoBehaviour
 
     public int power;
 
-    public int gold;
-
     private float currentTime;
     public float attacktTime;
 

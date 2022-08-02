@@ -11,12 +11,6 @@ public class Mine : MonoBehaviour
 
     public int goldPower = 1;
 
-    public Player player;
-    void Start()
-    {
-        player = FindObjectOfType<Player>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -28,7 +22,7 @@ public class Mine : MonoBehaviour
     {
         if (currentTime > mineTime)
         {
-            player.gold += goldPower;
+            GameManager.instance.gold += goldPower;
             currentTime = 0;
         }
     }

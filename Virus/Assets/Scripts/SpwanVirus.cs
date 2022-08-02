@@ -37,7 +37,7 @@ public class SpwanVirus : MonoBehaviour
         {
             waitMadeTime = 2f;
             StartCoroutine(MadeVirus(waitMadeTime));
-            gameManager.stage++;
+            GameManager.instance.stage++;
         }
     }
     private void NextStage()

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class BtnManger : MonoBehaviour
 {
+    //메인화면 UI
     public GameObject playerStatsBtn;
     public GameObject PlayerSkillBtn;
     public GameObject optionbtn;
+
+    //Mine화면 Ui
+    public GameObject MineStatsBtn;
 
     //플레이어 스탯 관련 변수
     public Player player;
@@ -15,20 +19,22 @@ public class BtnManger : MonoBehaviour
 
     //총알 관련 변수
 
-    bool playerStats = false;
+    //상태변수
+    public bool isPlayerStats = true;
 
     public void PlayerStatsUI()
-    {      
-        if(!playerStats)
+    {
+        if (isPlayerStats)
         {
-            playerStatsBtn.SetActive(true);
-            playerStats = true;
+            playerStatsBtn.SetActive(isPlayerStats);
+            isPlayerStats = !isPlayerStats;
         }
-        else if(playerStats)
-        {
-            playerStatsBtn.SetActive(false);
-            playerStats = false;
-        }
+        
+        //else if(playerStats)
+        //{
+        //    playerStatsBtn.SetActive(false);
+        //    playerStats = false;
+        //}
     }
 
     public void PowerUpBtn()
@@ -36,17 +42,17 @@ public class BtnManger : MonoBehaviour
         switch (player.power)
         {
             case 0:
-                powerUpGold = 100;
+                powerUpGold = 1;
                 break;
             case 1:
-                powerUpGold = 500;
+                powerUpGold = 2;
                 break;
         }
 
-        if (player.power < 3 && player.gold >= powerUpGold)
+        if (player.power < 3 && GameManager.instance.gold >= powerUpGold)
         {
             player.power++;
-            player.gold -= powerUpGold;
+            GameManager.instance.gold -= powerUpGold;
         }
         else
             return;
@@ -54,10 +60,10 @@ public class BtnManger : MonoBehaviour
 
     public void SpeedUpBtn()
     {
-        if (player.gold >= speedUpGold)
+        if (GameManager.instance.gold >= speedUpGold)
         {
             player.attacktTime -= 0.01f;
-            player.gold -= speedUpGold;
+            GameManager.instance.gold -= speedUpGold;
             speedUpGold += speedUpGold * 2;
         }
         else

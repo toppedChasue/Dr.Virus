@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
         enemystat.hp -= damage;
         if(enemystat.hp <= 0)
         {
-            player.gold += enemystat.gold;
+            GameManager.instance.gold += enemystat.gold;
             spwanVirus.enemies.Remove(this);
             Destroy(gameObject);
         }
