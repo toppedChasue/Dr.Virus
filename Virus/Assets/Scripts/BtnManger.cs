@@ -5,12 +5,13 @@ using UnityEngine;
 public class BtnManger : MonoBehaviour
 {
     //메인화면 UI
-    public GameObject playerStatsBtn;
-    public GameObject PlayerSkillBtn;
+    public GameObject playerStats;
+    public GameObject playerSkills;
     public GameObject optionbtn;
 
-    //Mine화면 Ui
-    public GameObject MineStatsBtn;
+    //광산화면 UI
+    public GameObject minerStats;
+    public GameObject minerSkills;
 
     //플레이어 스탯 관련 변수
     public Player player;
@@ -18,23 +19,100 @@ public class BtnManger : MonoBehaviour
     private int speedUpGold;
 
     //총알 관련 변수
+    public Bullet bullet;
+
+    public void Start()
+    {
+        bullet = FindObjectOfType<Bullet>();
+    }
 
     //상태변수
-    public bool isPlayerStats = true;
+    public bool isPlayerStats;
+    public bool isPlayerSkill;
+    public bool isMinerStats;
+    public bool isMinerSkill;
 
+    //둘다 켜지는데 하나가 켜지면 하나가 꺼지게 만들기
     public void PlayerStatsUI()
     {
-        if (isPlayerStats)
+        if (!isPlayerStats)
         {
-            playerStatsBtn.SetActive(isPlayerStats);
-            isPlayerStats = !isPlayerStats;
+            isPlayerStats = true;
+            if (playerSkills.activeSelf == true)
+            {
+                playerSkills.SetActive(false);
+                isPlayerSkill = false;
+            }
+            playerStats.SetActive(true);
         }
-        
-        //else if(playerStats)
-        //{
-        //    playerStatsBtn.SetActive(false);
-        //    playerStats = false;
-        //}
+        else if (isPlayerStats)
+        {
+            playerStats.SetActive(false);
+            isPlayerStats = false;
+            isPlayerSkill = false;
+        }
+    }
+
+    public void PlayerSkillsUI()
+    {
+        if (!isPlayerSkill)
+        {
+            isPlayerSkill = true;
+            if(playerStats.activeSelf ==true)
+            {
+                playerStats.SetActive(false);
+                isPlayerStats = false;
+            }
+            playerSkills.SetActive(true);
+        }
+
+        else if (isPlayerSkill)
+        {
+            playerSkills.SetActive(false);
+            isPlayerSkill = false;
+            isPlayerStats = false;
+        }
+    }
+
+    public void MinerStatsUI()
+    {
+        if (!isMinerStats)
+        {
+            isMinerStats = true;
+            if (minerSkills.activeSelf == true)
+            {
+                minerSkills.SetActive(false);
+                isMinerSkill = false;
+            }
+            minerStats.SetActive(true);
+        }
+        else if (isMinerStats)
+        {
+            minerStats.SetActive(false);
+            isMinerStats = false;
+            isMinerSkill = false;
+        }
+    }
+
+    public void MinerSkillsUI()
+    {
+        if (!isMinerSkill)
+        {
+            isMinerSkill = true;
+            if (minerStats.activeSelf == true)
+            {
+                minerStats.SetActive(false);
+                isMinerStats = false;
+            }
+            minerSkills.SetActive(true);
+        }
+
+        else if (isMinerSkill)
+        {
+            minerSkills.SetActive(false);
+            isMinerSkill = false;
+            isMinerStats = false;
+        }
     }
 
     public void PowerUpBtn()
@@ -58,13 +136,26 @@ public class BtnManger : MonoBehaviour
             return;
     }
 
-    public void SpeedUpBtn()
+    public void AtkSpeedUpBtn()
     {
-        if (GameManager.instance.gold >= speedUpGold)
+        int gold = speedUpGold;
+        if (GameManager.instance.gold >= gold)
         {
             player.attacktTime -= 0.01f;
-            GameManager.instance.gold -= speedUpGold;
-            speedUpGold += speedUpGold * 2;
+            GameManager.instance.gold -= gold;
+            gold += gold * 2;
+        }
+        else
+            return;
+    }
+    public void BulletSpeedUpBtn()
+    {
+        int gold = speedUpGold;
+        if (GameManager.instance.gold >= gold)
+        {
+            player.attacktTime -= 0.1f;
+            GameManager.instance.gold -= gold;
+            gold += gold * 2;
         }
         else
             return;

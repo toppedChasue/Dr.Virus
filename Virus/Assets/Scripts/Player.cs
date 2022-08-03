@@ -22,6 +22,8 @@ public class Player : MonoBehaviour
 
     public ObjectManager objectManager;
 
+    public bool isAttack;
+
 
     private void Update()
     {
@@ -53,8 +55,9 @@ public class Player : MonoBehaviour
                     target = enemies[i].transform;
                 }//가장 가까운 거리에 있는 적을 타겟으로 넣어줌
             }
-            if (target != null && currentTime > attacktTime)
+            if (target != null && currentTime > attacktTime && isAttack)
             {
+                //isAttack = false;
                 Attack();
             }
         }

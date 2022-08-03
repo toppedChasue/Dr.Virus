@@ -11,7 +11,7 @@ public class SpwanVirus : MonoBehaviour
     public GameObject virusPrefab;
     public Transform spwanArea;
 
-    private float waitMadeTime; //하나 생성되고 다시 생성될때까지 쿨타임
+    public float waitMadeTime; //하나 생성되고 다시 생성될때까지 쿨타임
     public int enemySpwanCount;
 
     public List<Enemy> enemies = new List<Enemy>();
@@ -35,7 +35,7 @@ public class SpwanVirus : MonoBehaviour
     {
         if (isSpwan)
         {
-            waitMadeTime = 2f;
+            waitMadeTime = 0.3f;
             StartCoroutine(MadeVirus(waitMadeTime));
             GameManager.instance.stage++;
         }

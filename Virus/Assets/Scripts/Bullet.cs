@@ -19,13 +19,14 @@ public class Bullet : MonoBehaviour
 
     Vector3 dir;
 
-    private void Start()
+    private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
-
+    }
+    private void Start()
+    {
         transform.position = bulletPos.position;
         originPos = bulletPos;
-
         dir = target.position - transform.position;
     }
     private void Update()

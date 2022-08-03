@@ -18,7 +18,8 @@ public class CameraMove : MonoBehaviour
     public GameObject mainUIGroup;
     public GameObject mineUIGroup;
 
-
+    [SerializeField]
+    private BtnManger btnManger;
 
     // Update is called once per frame
     void Update()
@@ -28,6 +29,14 @@ public class CameraMove : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, mineCameraPos.position, Time.deltaTime * speed);
             if (transform.position == mineCameraPos.position)
                 isMoveToMine = false;
+
+            if(btnManger.playerStats.activeSelf == true || btnManger.playerSkills.activeSelf == true)
+            {
+                btnManger.playerStats.SetActive(false);
+                btnManger.playerSkills.SetActive(false);
+                btnManger.isPlayerStats = false;
+                btnManger.isPlayerSkill = false;
+            }
         }
 
         if (isMoveToMain)
@@ -35,6 +44,14 @@ public class CameraMove : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, CameraOriginPos.position, Time.deltaTime * speed);
             if (transform.position == CameraOriginPos.position)
                 isMoveToMain = false;
+
+            if (btnManger.minerStats.activeSelf == true || btnManger.minerSkills.activeSelf == true)
+            {
+                btnManger.minerStats.SetActive(false);
+                btnManger.minerSkills.SetActive(false);
+                btnManger.isMinerStats = false;
+                btnManger.isMinerSkill = false;
+            }
         }
 
     }
