@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: VirusA
-  maxHp: 2
-  gold: 1
-  virusFrontSpeed: 0
+  type: 0
   player: {fileID: 0}
   spwanVirus: {fileID: 0}
+  speed: 0.2

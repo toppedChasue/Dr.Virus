@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyA : Enemy
 {
+    public float speed;
+
     private void Awake()
     {
         Init();
@@ -16,5 +18,7 @@ public class EnemyA : Enemy
         base.Init();
         gold = GameManager.instance.stage;
         CurrentHp = maxHp;
+        DP = maxDp;
+        virusFrontSpeed = speed;
     }
 }

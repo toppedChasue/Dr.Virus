@@ -24,14 +24,13 @@ public class Player : MonoBehaviour
 
     public bool isAttack;
 
-
     private void Update()
     {
         SearchVirus();
     }
     private void SearchVirus()
     {
-        Collider2D[] obj = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 8, transform.position.y), size, 0, layer);
+        Collider2D[] obj = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 9, transform.position.y), size, 0, layer);
         List<Enemy> enemies = new List<Enemy>();
         foreach (Collider2D enemycol in obj)
         {
@@ -55,10 +54,9 @@ public class Player : MonoBehaviour
                     target = enemies[i].transform;
                 }//가장 가까운 거리에 있는 적을 타겟으로 넣어줌
             }
-            if (target != null && currentTime > attacktTime && isAttack)
+            if (target != null && currentTime > attacktTime)
             {
-                //isAttack = false;
-                Attack();
+               Attack();
             }
         }
 
@@ -95,6 +93,6 @@ public class Player : MonoBehaviour
     void OnDrawGizmos()
     {//감지 범위 그려줌
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(new Vector2(transform.position.x + 8, transform.position.y), size);
+        Gizmos.DrawWireCube(new Vector2(transform.position.x + 9, transform.position.y), size);
     }
 }

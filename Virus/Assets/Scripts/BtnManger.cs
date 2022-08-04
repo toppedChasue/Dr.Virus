@@ -7,6 +7,7 @@ public class BtnManger : MonoBehaviour
     //메인화면 UI
     public GameObject playerStats;
     public GameObject playerSkills;
+    public GameObject playerTowers;
     public GameObject optionbtn;
 
     //광산화면 UI
@@ -29,6 +30,7 @@ public class BtnManger : MonoBehaviour
     //상태변수
     public bool isPlayerStats;
     public bool isPlayerSkill;
+    public bool isPlayerTower;
     public bool isMinerStats;
     public bool isMinerSkill;
 
@@ -38,10 +40,12 @@ public class BtnManger : MonoBehaviour
         if (!isPlayerStats)
         {
             isPlayerStats = true;
-            if (playerSkills.activeSelf == true)
+            if (playerSkills.activeSelf == true || playerTowers.activeSelf == true)
             {
                 playerSkills.SetActive(false);
                 isPlayerSkill = false;
+                playerTowers.SetActive(false);
+                isPlayerTower = false;
             }
             playerStats.SetActive(true);
         }
@@ -50,6 +54,7 @@ public class BtnManger : MonoBehaviour
             playerStats.SetActive(false);
             isPlayerStats = false;
             isPlayerSkill = false;
+            isPlayerTower = false;
         }
     }
 
@@ -58,10 +63,12 @@ public class BtnManger : MonoBehaviour
         if (!isPlayerSkill)
         {
             isPlayerSkill = true;
-            if(playerStats.activeSelf ==true)
+            if(playerStats.activeSelf ==true || playerTowers.activeSelf == true)
             {
                 playerStats.SetActive(false);
                 isPlayerStats = false;
+                playerTowers.SetActive(false);
+                isPlayerTower = false;
             }
             playerSkills.SetActive(true);
         }
@@ -71,6 +78,30 @@ public class BtnManger : MonoBehaviour
             playerSkills.SetActive(false);
             isPlayerSkill = false;
             isPlayerStats = false;
+            isPlayerTower = false;
+        }
+    }
+    public void PlayerTowersUI()
+    {
+        if (!isPlayerTower)
+        {
+            isPlayerTower = true;
+            if (playerStats.activeSelf == true || playerSkills.activeSelf == true)
+            {
+                playerStats.SetActive(false);
+                isPlayerStats = false;
+                playerSkills.SetActive(false);
+                isPlayerSkill = false;
+            }
+            playerTowers.SetActive(true);
+        }
+
+        else if (isPlayerTower)
+        {
+            playerTowers.SetActive(false);
+            isPlayerSkill = false;
+            isPlayerStats = false;
+            isPlayerTower = false;
         }
     }
 
@@ -115,6 +146,8 @@ public class BtnManger : MonoBehaviour
         }
     }
 
+
+
     public void PowerUpBtn()
     {
         switch (player.power)
@@ -148,16 +181,18 @@ public class BtnManger : MonoBehaviour
         else
             return;
     }
-    public void BulletSpeedUpBtn()
-    {
-        int gold = speedUpGold;
-        if (GameManager.instance.gold >= gold)
-        {
-            player.attacktTime -= 0.1f;
-            GameManager.instance.gold -= gold;
-            gold += gold * 2;
-        }
-        else
-            return;
-    }
+    //public void BulletSpeedUpBtn()
+    //{
+    //    int gold = speedUpGold;
+    //    if (GameManager.instance.gold >= gold)
+    //    {
+    //        player.attacktTime -= 0.1f;
+    //        GameManager.instance.gold -= gold;
+    //        gold += gold * 2;
+    //    }
+    //    else
+    //        return;
+    //}
+
+
 }

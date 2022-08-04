@@ -15,14 +15,8 @@ public class Bullet : MonoBehaviour
 
     private float maxXpos = 15f;
 
-    public Rigidbody2D rigid;
-
     Vector3 dir;
 
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-    }
     private void Start()
     {
         transform.position = bulletPos.position;
