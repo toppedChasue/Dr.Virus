@@ -6,10 +6,9 @@ public class Bullet : MonoBehaviour
 {
     public int b_hp =1;
 
-    public string bulletname;
     public float damage;
-    public Transform target;
     public float speed;
+    public Transform target;
     public Transform bulletPos;
     public Transform originPos;
 
@@ -21,6 +20,7 @@ public class Bullet : MonoBehaviour
     {
         transform.position = bulletPos.position;
         originPos = bulletPos;
+
         dir = target.position - transform.position;
     }
     private void Update()

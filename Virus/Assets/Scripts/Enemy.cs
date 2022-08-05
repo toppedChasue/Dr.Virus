@@ -21,8 +21,6 @@ public class Enemy : MonoBehaviour, IEnemy
 
     public string enemyName;
     public Type type;
-    protected float maxHp;
-    protected float maxDp;
     protected int gold;
 
     protected float virusFrontSpeed;
@@ -46,7 +44,6 @@ public class Enemy : MonoBehaviour, IEnemy
     private void Start()
     {
         StartCoroutine(VirusMove());
-        
     }
 
     protected virtual void Init()
@@ -71,13 +68,7 @@ public class Enemy : MonoBehaviour, IEnemy
         StartCoroutine(VirusMove());
     }
 
-    //public void DpCheck()
-    //{
-    //    if (DP > 0)
-    //        isDp = true;
-    //    else
-    //        isDp = false;
-    //}
+
 
     public void TakeDamage(float damage)
     {
@@ -86,7 +77,6 @@ public class Enemy : MonoBehaviour, IEnemy
         if (DP > 0)
         {//방어력이 있고 0보다 크면
             DP -= damage;
-            Debug.Log(DP);
             return;
         }
 

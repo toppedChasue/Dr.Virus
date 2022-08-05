@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
+    public Transform bulletParent;
     public GameObject playerBulletPrefab;
+    public GameObject TowerBulletPrefab;
 
     GameObject[] playerBullet;
+    GameObject[] TowerBullet;
 
     GameObject[] targetPool;
     void Awake()
     {
         playerBullet = new GameObject[20];
+        TowerBullet = new GameObject[60];
 
         Generate();
     }
@@ -20,8 +24,15 @@ public class ObjectManager : MonoBehaviour
         for (int index = 0; index < playerBullet.Length; index++)
         {
             playerBullet[index] = Instantiate(playerBulletPrefab);
+            playerBullet[index].transform.SetParent(bulletParent.transform);
             playerBullet[index].SetActive(false);
-        } 
+        }
+        for (int index = 0; index < TowerBullet.Length; index++)
+        {
+            TowerBullet[index] = Instantiate(TowerBulletPrefab);
+            TowerBullet[index].transform.SetParent(bulletParent.transform);
+            TowerBullet[index].SetActive(false);
+        }
     }
 
     public GameObject MakeObj(string type)
@@ -30,6 +41,9 @@ public class ObjectManager : MonoBehaviour
         {
             case "Basic":
                 targetPool = playerBullet;
+                break;
+            case "Tower":
+                targetPool = TowerBullet;
                 break;
         }
 

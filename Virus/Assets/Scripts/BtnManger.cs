@@ -20,11 +20,11 @@ public class BtnManger : MonoBehaviour
     private int speedUpGold;
 
     //총알 관련 변수
-    public Bullet bullet;
+    GameObject bulletParent;
 
     public void Start()
     {
-        bullet = FindObjectOfType<Bullet>();
+       bulletParent = GameObject.Find("BulletParent");
     }
 
     //상태변수
@@ -34,7 +34,7 @@ public class BtnManger : MonoBehaviour
     public bool isMinerStats;
     public bool isMinerSkill;
 
-    //둘다 켜지는데 하나가 켜지면 하나가 꺼지게 만들기
+    //Player UI
     public void PlayerStatsUI()
     {
         if (!isPlayerStats)
@@ -57,7 +57,6 @@ public class BtnManger : MonoBehaviour
             isPlayerTower = false;
         }
     }
-
     public void PlayerSkillsUI()
     {
         if (!isPlayerSkill)
@@ -105,6 +104,55 @@ public class BtnManger : MonoBehaviour
         }
     }
 
+    //Player Stats
+    public void PowerUpBtn()
+    {
+        switch (player.power)
+        {
+            case 0:
+                powerUpGold = 100;
+                break;
+            case 1:
+                powerUpGold = 500;
+                break;
+        }
+
+        if (player.power < 3 && GameManager.instance.gold >= powerUpGold)
+        {
+            player.power++;
+            GameManager.instance.gold -= powerUpGold;
+        }
+        else
+            return;
+    }
+    public void AtkSpeedUpBtn()
+    {
+        speedUpGold = 50;
+        int gold = speedUpGold;
+        if (GameManager.instance.gold >= gold)
+        {
+            player.attacktTime -= 0.01f;
+            GameManager.instance.gold -= gold;
+            gold += gold * 2;
+        }
+        else
+            return;
+    }
+    public void BulletSpeedUpBtn()
+    {
+        speedUpGold = 50;
+        int gold = speedUpGold;
+        if (GameManager.instance.gold >= gold)
+        {
+            player.bulletSpeed += 0.1f;
+            GameManager.instance.gold -= gold;
+            gold += gold + (int)(gold * 0.5f);
+        }
+        else
+            return;
+    }
+
+    //Miner Ui
     public void MinerStatsUI()
     {
         if (!isMinerStats)
@@ -124,7 +172,6 @@ public class BtnManger : MonoBehaviour
             isMinerSkill = false;
         }
     }
-
     public void MinerSkillsUI()
     {
         if (!isMinerSkill)
@@ -145,54 +192,5 @@ public class BtnManger : MonoBehaviour
             isMinerStats = false;
         }
     }
-
-
-
-    public void PowerUpBtn()
-    {
-        switch (player.power)
-        {
-            case 0:
-                powerUpGold = 1;
-                break;
-            case 1:
-                powerUpGold = 2;
-                break;
-        }
-
-        if (player.power < 3 && GameManager.instance.gold >= powerUpGold)
-        {
-            player.power++;
-            GameManager.instance.gold -= powerUpGold;
-        }
-        else
-            return;
-    }
-
-    public void AtkSpeedUpBtn()
-    {
-        int gold = speedUpGold;
-        if (GameManager.instance.gold >= gold)
-        {
-            player.attacktTime -= 0.01f;
-            GameManager.instance.gold -= gold;
-            gold += gold * 2;
-        }
-        else
-            return;
-    }
-    //public void BulletSpeedUpBtn()
-    //{
-    //    int gold = speedUpGold;
-    //    if (GameManager.instance.gold >= gold)
-    //    {
-    //        player.attacktTime -= 0.1f;
-    //        GameManager.instance.gold -= gold;
-    //        gold += gold * 2;
-    //    }
-    //    else
-    //        return;
-    //}
-
 
 }

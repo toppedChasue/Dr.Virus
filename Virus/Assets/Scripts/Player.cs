@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     public GameObject bullet;
     public Transform bulletPos;
+    public float bulletSpeed;
+    
     public float attackRange;
 
     public int power;
@@ -21,14 +23,13 @@ public class Player : MonoBehaviour
     List<Enemy> enemies = new List<Enemy>();
 
     public ObjectManager objectManager;
-
-    public bool isAttack;
+    private Bullet bulletObj;
 
     private void Update()
     {
         SearchVirus();
     }
-    private void SearchVirus()
+    public void SearchVirus()
     {
         Collider2D[] obj = Physics2D.OverlapBoxAll(new Vector2(transform.position.x + 9, transform.position.y), size, 0, layer);
         List<Enemy> enemies = new List<Enemy>();
@@ -45,7 +46,6 @@ public class Player : MonoBehaviour
             float shortDis = attackRange;
             for (int i = 0; i < enemies.Count; i++)
             {
-                target = null;
                 float dis = Vector3.Distance(transform.position, enemies[i].transform.position);
                 //타워와 에너미의 거리를 dis변수에 넣어줌
                 if (dis < shortDis)
@@ -56,40 +56,24 @@ public class Player : MonoBehaviour
             }
             if (target != null && currentTime > attacktTime)
             {
-               Attack();
+                StartCoroutine(Wait(power, "Basic"));
             }
         }
 
     }
-    private void Attack()
+    public IEnumerator Wait(int power, string name)
     {
-        switch (power)
-        {
-            case 0:
-                SingleBullet();
-                break;
-            case 1:
-                SingleBullet();
-                Invoke("SingleBullet", 0.1f);
-                break;
-            case 2:
-                SingleBullet();
-                Invoke("SingleBullet", 0.1f);
-                Invoke("SingleBullet", 0.2f);
-                break;
-        }
-        return;
-    }
-
-    private void SingleBullet()
-    {
-        var obj = objectManager.MakeObj("Basic");
-        Bullet bulletObj = obj.GetComponent<Bullet>();
-        bulletObj.target = target;
-        bulletObj.bulletPos = bulletPos;
         currentTime = 0;
+        for (int i = 0; i < power + 1; i++)
+        {
+            var obj = objectManager.MakeObj(name);
+            bulletObj = obj.GetComponent<Bullet>();
+            bulletObj.target = target;
+            bulletObj.bulletPos = bulletPos;
+            bulletObj.speed = bulletSpeed;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
-
     void OnDrawGizmos()
     {//감지 범위 그려줌
         Gizmos.color = Color.red;
