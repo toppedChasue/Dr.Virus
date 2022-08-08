@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   b_hp: 1
-  damage: 1
-  speed: 0
+  damage: 2
+  speed: 5
   target: {fileID: 0}
   bulletPos: {fileID: 0}
   originPos: {fileID: 0}

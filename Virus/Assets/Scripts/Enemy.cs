@@ -7,17 +7,11 @@ interface IEnemy
     public float CurrentHp { get; set; }
     public float MaxHp { get; set; }
     public float DP { get; set; }
-    
 }
 
-public enum Type { A, B, C, D}
+public enum Type { A, B, C, D, BOSS}
 public class Enemy : MonoBehaviour, IEnemy
 {
-    //구현 할것-
-    //변종바이러스(보스)
-    //바이러스 종류 다양화(프리펩 추가)
-    //바이러스 종류 마다 스프라이트를 여러개 넣어서 색깔놀이
-    //바이러스 스탯을 스테이지 마다 늘리기 
 
     public string enemyName;
     public Type type;
@@ -85,6 +79,7 @@ public class Enemy : MonoBehaviour, IEnemy
         {
             GameManager.instance.gold += gold;
             spwanVirus.enemies.Remove(this);
+            GameManager.instance.enemyKillCount++;
             Destroy(gameObject);
         }
     }

@@ -5041,9 +5041,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillManager: {fileID: 21510764}
-  stage: 0
+  stage: 1
   gold: 0
   skillPoint: 0
+  enemyKillCount: 0
 --- !u!4 &709652754
 Transform:
   m_ObjectHideFlags: 0
@@ -6503,12 +6504,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccba0d7794da98478023b977b40fd3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virusPrefab: {fileID: 7607715405637712017, guid: ccea52e221e69244b96245fb9562d403, type: 3}
+  virusPrefabs:
+  - {fileID: 7607715405637712017, guid: ccea52e221e69244b96245fb9562d403, type: 3}
+  - {fileID: 7607715405637712017, guid: 34721ef837324604e900846e897dc532, type: 3}
+  - {fileID: 7607715405637712017, guid: b573f8eb9fbcdbe428fe97894d91218e, type: 3}
+  - {fileID: 7607715405637712017, guid: a005fdf300c9e9544b942cb927af614c, type: 3}
+  - {fileID: 7607715405637712017, guid: 579ffbb5dde7a2c4086274d6e46d6d8f, type: 3}
   spwanArea: {fileID: 858456728}
   waitMadeTime: 0
   enemySpwanCount: 0
+  BossSpwanCount: 10
   enemies: []
   isSpwan: 0
+  isBossSpwan: 0
   gameManager: {fileID: 709652753}
 --- !u!212 &858456727
 SpriteRenderer:
@@ -12013,8 +12021,8 @@ MonoBehaviour:
   bulletPos: {fileID: 965049375}
   bulletSpeed: 20
   attackRange: 50
-  power: 1
-  attacktTime: 2
+  power: 0
+  attacktTime: 0.5
   objectManager: {fileID: 2060148417}
 --- !u!212 &1690234788
 SpriteRenderer:

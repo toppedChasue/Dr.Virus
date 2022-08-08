@@ -5,7 +5,6 @@ using UnityEngine;
 public class EnemyA : Enemy
 {
     public float speed;
-    public float maxHp;
     public float maxDp;
     public int enemyGold;
 
@@ -19,9 +18,9 @@ public class EnemyA : Enemy
     protected override void Init()
     {
         base.Init();
-        gold = enemyGold * GameManager.instance.stage;
-        CurrentHp = maxHp;
-        DP = maxDp;
-        virusFrontSpeed = speed;
+        gold = enemyGold * (GameManager.instance.stage / 5);
+        CurrentHp = GameManager.instance.stage * 2;
+        DP = (GameManager.instance.stage / 5) * (maxDp + 1);
+        virusFrontSpeed = speed + (GameManager.instance.stage / 100);
     }
 }

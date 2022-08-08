@@ -14,7 +14,7 @@ public class ObjectManager : MonoBehaviour
     GameObject[] targetPool;
     void Awake()
     {
-        playerBullet = new GameObject[20];
+        playerBullet = new GameObject[100];
         TowerBullet = new GameObject[60];
 
         Generate();
